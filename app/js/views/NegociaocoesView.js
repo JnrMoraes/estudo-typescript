@@ -1,10 +1,4 @@
-class NegociacoesView {
-    constructor(seletor) {
-        this._elemento = document.querySelector(seletor);
-    }
-    update(modelo) {
-        this._elemento.innerHTML = this.template(modelo);
-    }
+class NegociacoesView extends View {
     template(model) {
         return `
     <table class="table table-hover table-bordered">
@@ -18,7 +12,9 @@ class NegociacoesView {
             </thead>
 
             <tbody>
-              ${model.paraArray().map(negociacao => `
+              ${model
+            .paraArray()
+            .map((negociacao) => `
                     <tr>
                         <th>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</th>
                         <th>${negociacao.quantidade}</th>
@@ -27,7 +23,8 @@ class NegociacoesView {
                     </tr>
                   `
         // string em branco após join para não colocar uma virgula como separador
-        ).join('')}  
+        )
+            .join("")}  
             </tbody>
 
             <tfoot>
