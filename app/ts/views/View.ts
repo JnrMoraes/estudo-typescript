@@ -2,8 +2,8 @@ export abstract class View<T> {
   protected _elemento: JQuery;
   private _scalping: boolean;
 
-  // parâmetro opcional temque ser sempre o ultimo do constructor
-  constructor(seletor: string, scalping?: boolean) {
+  // refatorado padrao opcional(sempre é undefined) pois "strictNullChecks": true em tsconfig
+  constructor(seletor: string, scalping: boolean = false) {
     this._elemento = $(seletor);
     this._scalping = scalping
   }
