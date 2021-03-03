@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "outDir": "app/js",
-        "noEmitOnError": true,
-        "noImplicitAny": true,
-        "removeComments": true,
-        "module": "System"
+      "target": "es6",
+      "outDir": "app/js",
+      "noEmitOnError": true, 
+      "noImplicitAny": true,
+      "removeComments": true,
+      "module": "system" // não pode ser sytem com letra maiuscula! se não não reconhece os imports e exports no browser
         
     },
     "include": [
