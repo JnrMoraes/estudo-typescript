@@ -34,7 +34,8 @@ class NegociacoesView {
                         <th>${negociacao.volume}</th>
                     </tr>
                   `
-              ).join()}
+                  // string em branco após join para não colocar uma virgula como separador
+              ).join('')}  
             </tbody>
 
             <tfoot>
