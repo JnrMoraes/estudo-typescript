@@ -1,5 +1,5 @@
 import { NegociacoesView, MensagemView } from "../views/index";
-import { Negociacoes, Negociacao } from "../models/index";
+import { Negociacao, Negociacoes } from "../models/index";
 
 export class NegociacaoController {
   private _inputData: JQuery;
@@ -11,7 +11,7 @@ export class NegociacaoController {
 
   constructor() {
     this._inputData = $("#data");
-    this._inputQuantidade = $(document.querySelector("#quantidade"));
+    this._inputQuantidade = $("#quantidade");
     this._inputValor = $("#valor");
     this._negociacoesView.update(this._negociacoes);
   }
