@@ -6,8 +6,8 @@ export class Negociacoes {
   adiciona(negociacao: Negociacao) {
     this._negociacoes.push(negociacao);
   }
-
-  paraArray() {
-    return this._negociacoes;
+// typescript vê concat pode fazer com qualquer tipo de elemento, tipando o array como Negociacao ele para 
+  paraArray(): Negociacao[] {
+    return ( [] as Negociacao[]).concat(this._negociacoes);
   }
 }
