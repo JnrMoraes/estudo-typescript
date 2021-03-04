@@ -9,8 +9,8 @@
       "request": "launch",
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:8080",
-      "webRoot": "${workspaceFolder}/app.ts",
-      "runtimeExecutable": "/Users/juniormoraes/Applications/Chrome Canary Apps.localized/Contents/MacOS/Google Chrome\"
+      "webRoot": "${workspaceFolder}/app.ts"
+      // "runtimeExecutable": "/Users/juniormoraes/Applications/Chrome Canary Apps.localized/Contents/MacOS/Google Chrome\"
     }
   ]
 }
