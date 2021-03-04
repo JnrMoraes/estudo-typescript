@@ -5,9 +5,10 @@
       "noEmitOnError": true, 
       "noImplicitAny": true,
       "removeComments": true,
-      "module": "system", // não pode ser sytem com letra maiuscula! se não não reconhece os imports e exports no browser
-      "strictNullChecks": true  
-
+      "module": "system", 
+      "strictNullChecks": true,
+      "experimentalDecorators": true 
+ 
     },
     "include": [
         "app/ts/**/*"

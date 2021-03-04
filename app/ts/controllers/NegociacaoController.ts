@@ -1,6 +1,8 @@
 import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacao, Negociacoes } from "../models/index";
 
+import { logarTempoDeExecucao } from "../helpers/decorators/index";
+
 export class NegociacaoController {
   private _inputData: JQuery;
   private _inputQuantidade: JQuery;
@@ -16,9 +18,9 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
   }
 
+  @logarTempoDeExecucao()
   adiciona(event: Event) {
-    const t1 = performance.now();
-
+  
     event.preventDefault();
 
     let data = new Date(this._inputData.val().replace(/-/g, ","));
@@ -40,9 +42,6 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
     this._mensagemView.update("Negociação adiconada com sucesso!");
 
-    const t2 = performance.now();
-
-    console.log(`Tempo de execução é ${t1 - t2} ms`);
   }
 
   private _ehDiaUtil(data: Date) {
