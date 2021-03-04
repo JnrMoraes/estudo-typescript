@@ -1,7 +1,7 @@
 import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacao, Negociacoes } from "../models/index";
 
-import { logarTempoDeExecucao } from "../helpers/decorators/index";
+import * as decorators from "../helpers/decorators/index";
 
 export class NegociacaoController {
   private _inputData: JQuery;
@@ -18,7 +18,7 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
   }
 
-  @logarTempoDeExecucao()
+  @decorators.logarTempoDeExecucao(true)
   adiciona(event: Event) {
   
     event.preventDefault();
