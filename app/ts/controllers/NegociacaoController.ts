@@ -2,7 +2,7 @@ import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacao, Negociacoes, NegociacaoParcial } from "../models/index";
 import { domInject, throttle } from "../helpers/decorators/index";
 import { NegociacaoService } from "../services/index";
-
+import { imprime } from "../helpers/index";
 export class NegociacaoController {
   @domInject("#data")
   private _inputData: JQuery;
@@ -41,6 +41,9 @@ export class NegociacaoController {
     );
 
     this._negociacoes.adiciona(negociacao);
+
+    imprime(negociacao, this._negociacoes);
+
     this._negociacoesView.update(this._negociacoes);
     this._mensagemView.update("Negociação adiconada com sucesso!");
   }
@@ -55,15 +58,16 @@ export class NegociacaoController {
   @throttle()
   importarDados() {
     this._service
-    .obterNegociacoes(res => {
-        if(res.ok) return res;
+      .obterNegociacoes((res) => {
+        if (res.ok) return res;
         throw new Error(res.statusText);
-    })
-    .then(negociacoes => {
-        negociacoes.forEach(negociacao => 
-            this._negociacoes.adiciona(negociacao));
+      })
+      .then((negociacoes) => {
+        negociacoes.forEach((negociacao) =>
+          this._negociacoes.adiciona(negociacao)
+        );
         this._negociacoesView.update(this._negociacoes);
-    });
+      });
   }
 }
 

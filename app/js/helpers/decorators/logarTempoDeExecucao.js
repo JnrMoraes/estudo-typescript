@@ -12,7 +12,7 @@ System.register([], function (exports_1, context_1) {
                     divisor = 1000;
                     console.log("dentro em Segundos");
                 }
-                console.log("-=-=-=--=-=-=");
+                console.log('-- Temporizador --');
                 console.log(`parâmentros passados para o método ${propertyKey}: ${JSON.stringify(args)}`);
                 const t1 = performance.now();
                 const retorno = metodoOriginal.apply(this, args);

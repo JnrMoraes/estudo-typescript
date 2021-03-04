@@ -16,7 +16,7 @@ export function logarTempoDeExecucao(emSegundos: boolean = false) {
         console.log("dentro em Segundos");
       }
 
-      console.log("-=-=-=--=-=-=");
+      console.log('-- Temporizador --');
       console.log(
         `parâmentros passados para o método ${propertyKey}: ${JSON.stringify(
           args
