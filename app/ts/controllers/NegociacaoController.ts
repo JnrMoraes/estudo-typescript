@@ -1,7 +1,7 @@
 import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacao, Negociacoes, NegociacaoParcial } from "../models/index";
-
 import { domInject, throttle } from "../helpers/decorators/index";
+import { NegociacaoService } from "../services/index";
 
 export class NegociacaoController {
   @domInject("#data")
@@ -17,13 +17,14 @@ export class NegociacaoController {
   private _negociacoesView = new NegociacoesView("#negociacoesView");
   private _mensagemView = new MensagemView("#mensagemView");
 
+  private _service = new NegociacaoService();
+
   constructor() {
     this._negociacoesView.update(this._negociacoes);
   }
 
   @throttle()
   adiciona(event: Event) {
-   
     let data = new Date(this._inputData.val().replace(/-/g, ","));
 
     if (!this._ehDiaUtil(data)) {
@@ -60,17 +61,12 @@ export class NegociacaoController {
         throw new Error(res.statusText);
       }
     }
-
-    fetch("localhost:8080/dados")
-      .then((res) => isOk(res))
-      .then((res) => res.json())
-      .then((dados: NegociacaoParcial[]) => {
-        dados
-          .map((dado) => new Negociacao(new Date(), dado.vezes, dado.montante))
-          .forEach((negociacao) => this._negociacoes.adiciona(negociacao))
-        this._negociacoesView.update(this._negociacoes);
-        })
-      .catch((err) => console.log(err.message));
+    this._service.obterNegociacoes(isOk).then((negociacoes) => {
+      negociacoes.forEach((negociacao) =>
+        this._negociacoes.adiciona(negociacao)
+      );
+      this._negociacoesView.update(this._negociacoes);
+    });
   }
 }
 
