@@ -4,7 +4,7 @@ import { NegociacaoParcial, Negociacao } from '../models/index';
 
 export class NegociacaoService {
 
-    obterNegociacoes(handler: Function): Promise<Negociacao[]> {
+    obterNegociacoes(handler: ResponseHandler): Promise<Negociacao[]> {
 
         return <Promise<Negociacao[]>> fetch('http://localhost:8080/dados')
             .then(res => handler(res))
@@ -17,3 +17,7 @@ export class NegociacaoService {
     }
 }
 
+export interface ResponseHandler {
+
+  (res: Response): Response
+}

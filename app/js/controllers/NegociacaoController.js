@@ -48,16 +48,14 @@ System.register(["../views/index", "../models/index", "../helpers/decorators/ind
                         data.getDay() != DiaDaSemana.Domingo);
                 }
                 importarDados() {
-                    function isOk(res) {
-                        if (res.ok) {
+                    this._service
+                        .obterNegociacoes(res => {
+                        if (res.ok)
                             return res;
-                        }
-                        else {
-                            throw new Error(res.statusText);
-                        }
-                    }
-                    this._service.obterNegociacoes(isOk).then((negociacoes) => {
-                        negociacoes.forEach((negociacao) => this._negociacoes.adiciona(negociacao));
+                        throw new Error(res.statusText);
+                    })
+                        .then(negociacoes => {
+                        negociacoes.forEach(negociacao => this._negociacoes.adiciona(negociacao));
                         this._negociacoesView.update(this._negociacoes);
                     });
                 }
