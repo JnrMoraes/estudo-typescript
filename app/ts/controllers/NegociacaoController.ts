@@ -1,16 +1,15 @@
 import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacao, Negociacoes } from "../models/index";
 
-import { domInject } from "../helpers/decorators/domInject"
+import { domInject } from "../helpers/decorators/domInject";
 
 export class NegociacaoController {
-
   @domInject("#data")
   private _inputData: JQuery;
-  
+
   @domInject("#quantidade")
   private _inputQuantidade: JQuery;
-  
+
   @domInject("#valor")
   private _inputValor: JQuery;
 
@@ -50,6 +49,27 @@ export class NegociacaoController {
       data.getDay() != DiaDaSemana.Sabado &&
       data.getDay() != DiaDaSemana.Domingo
     );
+  }
+
+  importarDados() {
+    function isOk(res: Response) {
+      if (res.ok) {
+        return res;
+      } else {
+        throw new Error(res.statusText);
+      }
+    }
+
+    fetch("localhost:8080/dados")
+      .then((res) => isOk(res))
+      .then((res) => res.json())
+      .then((dados: any[]) => {
+        dados
+          .map((dado) => new Negociacao(new Date(), dado.vezes, dado.montante))
+          .forEach((negociacao) => this._negociacoes.adiciona(negociacao))
+        this._negociacoesView.update(this._negociacoes);
+        })
+      .catch((err) => console.log(err.message));
   }
 }
 
