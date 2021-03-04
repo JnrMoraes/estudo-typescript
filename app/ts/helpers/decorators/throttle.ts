@@ -8,9 +8,8 @@ export function throttle(milisegundos = 500) {
 
     descriptor.value = function (...args: any[]) {
 
-      if(event)  event.preventDefault();
       let timer = 0;
-     
+      if(event)  event.preventDefault();
      clearInterval(timer);
      timer = setTimeout(() => metodoOriginal.apply(this, args))
      

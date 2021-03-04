@@ -5,9 +5,9 @@ System.register([], function (exports_1, context_1) {
         return function (target, propertyKey, descriptor) {
             const metodoOriginal = descriptor.value;
             descriptor.value = function (...args) {
+                let timer = 0;
                 if (event)
                     event.preventDefault();
-                let timer = 0;
                 clearInterval(timer);
                 timer = setTimeout(() => metodoOriginal.apply(this, args));
             };
