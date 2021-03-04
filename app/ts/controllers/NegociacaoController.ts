@@ -17,40 +17,48 @@ export class NegociacaoController {
   }
 
   adiciona(event: Event) {
+    const t1 = performance.now();
+
     event.preventDefault();
 
-    let data = new Date(this._inputData.val().replace(/-/g, ','));
+    let data = new Date(this._inputData.val().replace(/-/g, ","));
 
-    if(!this._ehDiaUtil(data)) {
+    if (!this._ehDiaUtil(data)) {
+      this._mensagemView.update(
+        "Somente negociações em dias úteis, por favor!"
+      );
+      return;
+    }
 
-      this._mensagemView.update('Somente negociações em dias úteis, por favor!');
-      return 
-  }
-
-        const negociacao = new Negociacao(
-            data, 
-            parseInt(this._inputQuantidade.val()),
-            parseFloat(this._inputValor.val())
-        );
+    const negociacao = new Negociacao(
+      data,
+      parseInt(this._inputQuantidade.val()),
+      parseFloat(this._inputValor.val())
+    );
 
     this._negociacoes.adiciona(negociacao);
     this._negociacoesView.update(this._negociacoes);
     this._mensagemView.update("Negociação adiconada com sucesso!");
+
+    const t2 = performance.now();
+
+    console.log(`Tempo de execução é ${t1 - t2} ms`);
   }
 
   private _ehDiaUtil(data: Date) {
-
-    return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
+    return (
+      data.getDay() != DiaDaSemana.Sabado &&
+      data.getDay() != DiaDaSemana.Domingo
+    );
   }
-
 }
 
-enum DiaDaSemana{
+enum DiaDaSemana {
   Domingo,
-  Segunda, 
+  Segunda,
   Terca,
   Quarta,
   Quinta,
   Sexta,
-  Sabado
+  Sabado,
 }
