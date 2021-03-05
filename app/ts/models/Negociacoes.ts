@@ -1,26 +1,27 @@
-import { Negociacao } from "./Negociacao";
+import { Negociacao } from './Negociacao';
 import { MeuObjeto } from './MeuObjeto';
 
 export class Negociacoes implements MeuObjeto<Negociacoes> {
-  private _negociacoes: Negociacao[] = [];
 
-  adiciona(negociacao: Negociacao) {
-    this._negociacoes.push(negociacao);
-  }
+    private _negociacoes: Negociacao[] = [];
 
-  paraArray(): Negociacao[] {
-    return ([] as Negociacao[]).concat(this._negociacoes);
-  }
+    adiciona(negociacao: Negociacao): void {
 
-  paraTexto(): void {
-    console.log("-- Negociações --");
-    console.log(JSON.stringify(this._negociacoes));
-  }
+        this._negociacoes.push(negociacao);
+    }
 
-  ehIgual(negociacoes: Negociacoes): boolean {
-    return (
-      JSON.stringify(this._negociacoes) ==
-      JSON.stringify(negociacoes.paraArray())
-    );
-  }
+    paraArray(): Negociacao[] {
+
+        return ([] as Negociacao[]).concat(this._negociacoes);
+    }
+
+    paraTexto(): void {
+        console.log('Impressão');
+        console.log(JSON.stringify(this._negociacoes));
+    }
+
+    ehIgual(negociacoes: Negociacoes): boolean {
+
+        return JSON.stringify(this._negociacoes) == JSON.stringify(negociacoes.paraArray());
+    }
 }

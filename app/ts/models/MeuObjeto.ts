@@ -1,6 +1,6 @@
-import { Igualavel } from './Igualavel'
-import { Imprimivel } from "./Imprimivel";
+import { Imprimivel } from './Imprimivel';
+import { Igualavel } from './Igualavel';
 
-export interface MeuObjeto<T> extends Imprimivel, Igualavel<T>{
-
+export interface MeuObjeto<T> extends Imprimivel, Igualavel<T> {
+    
 }

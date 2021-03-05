@@ -12,7 +12,7 @@ System.register(["./View"], function (exports_1, context_1) {
             NegociacoesView = class NegociacoesView extends View_1.View {
                 template(model) {
                     return `
-    <table class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>DATA</th>
@@ -23,23 +23,20 @@ System.register(["./View"], function (exports_1, context_1) {
             </thead>
 
             <tbody>
-              ${model
-                        .paraArray()
-                        .map((negociacao) => `
-                    <tr>
-                        <th>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</th>
-                        <th>${negociacao.quantidade}</th>
-                        <th>${negociacao.valor}</th>
-                        <th>${negociacao.volume}</th>
-                    </tr>
-                  `)
-                        .join("")}  
+                ${model.paraArray().map(negociacao => `
+                        <tr>
+                            <td>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</td>
+                            <td>${negociacao.quantidade}</td>
+                            <td>${negociacao.valor}</td>
+                            <td>${negociacao.volume}</td>
+                        <tr>
+                    `).join('')}            
             </tbody>
 
             <tfoot>
             </tfoot>
         </table>
-    `;
+        `;
                 }
             };
             exports_1("NegociacoesView", NegociacoesView);

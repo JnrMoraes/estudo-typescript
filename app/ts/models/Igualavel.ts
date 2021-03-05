@@ -1,3 +1,5 @@
-export interface Igualavel<T>{
-  ehIgual(objeto: T): boolean;
+export interface Igualavel<T> {
+
+    ehIgual(objeto: T): boolean;
 }
+

@@ -1,1 +1,1 @@
-export * from './NegociacaoService'
+export * from './NegociacaoService';
